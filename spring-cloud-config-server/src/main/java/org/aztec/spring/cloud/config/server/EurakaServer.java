@@ -8,23 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-@EnableConfigServer
 @EnableEurekaServer
-//@RestController
-public class ConfigServer {
+public class EurakaServer {
 
-  //@Value("${config.name}")
-  String name = "World";
-
-  //@RequestMapping("/")
-  public String home() {
-    return "Hello " + name;
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(ConfigServer.class, args);
-  }
+	  public static void main(String[] args) {
+	    SpringApplication.run(ConfigServer.class, args);
+	  }
 
 }
-
-

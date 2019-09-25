@@ -1,10 +1,22 @@
-
 server:
-  port: 8888
+  port: 8890
 
 spring:
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/spring-cloud-samples/config-repo
+          uri: https://github.com/uniqueleon/spring-cloud-demo-config
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+         

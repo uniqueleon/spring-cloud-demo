@@ -3,6 +3,16 @@ server:
     
 spring:
   application:
-    name: foo
+    name: apptest
   profiles:
-    active: default
+    active: dev
+  cloud:
+    config:
+      name: apptest
+      profile: dev
+      lable: master
+      
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8890/eureka/
