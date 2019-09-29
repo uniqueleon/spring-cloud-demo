@@ -1,0 +1,14 @@
+server:
+    port: 8899
+    
+spring:
+  application:
+    name: apptest
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: apptest
+      profile: dev
+      lable: master
+      
