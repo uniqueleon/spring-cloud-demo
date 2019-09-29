@@ -12,7 +12,3 @@ spring:
       profile: dev
       lable: master
       
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8890/eureka/

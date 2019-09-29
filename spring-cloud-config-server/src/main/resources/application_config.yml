@@ -1,5 +1,5 @@
 server:
-  port: 8891
+  port: 8890
 
 spring:
   application:
@@ -13,11 +13,14 @@ spring:
     template-loader-path: classpath:/templates/
     prefer-file-system-access: false
   resources:
-    add-mappings: false
-    
+    add-mappings: true
 
 eureka:
+  instance:
+    hostname: localhost
   client:
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://localhost:8890/eureka/
+      defaultZone: http://localhost:${server.port}/eureka/
          

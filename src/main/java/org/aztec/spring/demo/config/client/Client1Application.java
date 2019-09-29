@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableAutoConfiguration
 @RestController
-public class Application {
+@EnableEurekaClient
+public class Client1Application {
 	
 	  @Value("${message.hello}")
 	  String name = "World";
@@ -23,6 +24,6 @@ public class Application {
 
 	
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(Client1Application.class, args);
 	}
 }
