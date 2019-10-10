@@ -9,10 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.aztec</groupId>
-	<artifactId>spring-cloud-demo</artifactId>
+	<artifactId>spring-cloud-config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-cloud-demo</name>
 	<description>Demo project for Spring Boot</description>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
