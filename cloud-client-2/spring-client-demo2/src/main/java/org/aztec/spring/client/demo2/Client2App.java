@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-@ComponentScan(basePackages =  {"org.aztec.spring.client.demo2.web"})
+@ComponentScan(basePackages =  {"org.aztec.spring.client.demo2.web","org.aztec.spring.client.demo2.feign.fallback"})
 public class Client2App 
 {
 
