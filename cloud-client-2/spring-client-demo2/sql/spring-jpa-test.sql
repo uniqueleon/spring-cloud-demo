@@ -1,8 +1,13 @@
-create database spring-test;
+create database spring_test_00;
 
-use spring_test;
+use spring_test_00;
 
-create table app_user(
+create table app_user_00(
+id bigint not null primary key auto_increment,
+name varchar(20)
+)engine=InnoDB,charset=utf8mb4;
+
+create table app_user_01(
 id bigint not null primary key auto_increment,
 name varchar(20)
 )engine=InnoDB,charset=utf8mb4;

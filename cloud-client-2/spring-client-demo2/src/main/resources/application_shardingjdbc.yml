@@ -1,0 +1,61 @@
+server:
+    port: 8898
+    
+spring:
+  application:
+    name: apptest2
+  profiles:
+    active: dev
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/spring_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+#    username: root
+#    password: lm1234
+#    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update  
+      
+      
+sharding:
+  jdbc:
+    datasource:
+      names: ds0
+      ds0:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/spring_test_00
+        username: root
+        password: lm1234
+    config:
+      sharding:
+        default-database-strategy:
+          inline:
+            sharding-column: id
+            algorithm-expression: ds0
+        tables:
+          app_user:
+            actual-data-nodes: ds0.app_user_0${0..1}
+            table-strategy:
+              inline:
+                sharding-column: id
+                algorithm-expression: app_user_0$->{id % 2}
+  bindingTables:
+    - app_user
+  defaultDataSourceName: ds0
+  defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
+      
+feign:
+  okhttp:
+    enabled: true
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        decode404: false 
+  hystrix:
+    enabled: true

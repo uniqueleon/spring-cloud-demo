@@ -6,11 +6,6 @@ spring:
     name: apptest2
   profiles:
     active: dev
-  cloud:
-    config:
-      name: apptest
-      profile: dev
-      lable: master
   datasource:
     url: jdbc:mysql://localhost:3306/spring_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     username: root
@@ -21,7 +16,8 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: update  
+      
       
 feign:
   okhttp:
