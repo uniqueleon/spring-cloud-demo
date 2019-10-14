@@ -1,0 +1,33 @@
+server:
+    port: 8898
+    
+spring:
+  application:
+    name: apptest2
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:8066/TESTDB?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+    username: root
+    password: digdeep
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update  
+      
+      
+feign:
+  okhttp:
+    enabled: true
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        decode404: false 
+  hystrix:
+    enabled: true
