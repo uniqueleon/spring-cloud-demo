@@ -1,8 +1,7 @@
 package org.aztec.spring.client.demo2.web.controller;
 
+import java.util.List;
 import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.aztec.spring.client.demo2.dao.UserRepository;
 import org.aztec.spring.client.demo2.entity.User;
@@ -55,5 +54,15 @@ public class TestJpaController {
 		newUser.setId(id);
 		User userData = repository.saveAndFlush(newUser);
 		return "created user success!id=" + userData.getId();
+	}
+
+	@RequestMapping("/user/findByName")
+	public String findUserByName(@RequestParam("name") String name) {
+		StringBuilder builder = new StringBuilder();
+		List<User> retUsers = repository.findByName(name);
+		for(User user : retUsers) {
+			builder.append(user.toString());
+		}
+		return builder.toString();
 	}
 }

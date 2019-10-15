@@ -6,13 +6,18 @@ spring:
     name: apptest2
   profiles:
     active: dev
-    include: sjdbc
   jpa:
     database: MySQL
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     hibernate:
       ddl-auto: update
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
       
 sharding:
   jdbc:
