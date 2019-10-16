@@ -22,12 +22,12 @@
 
 
      <!-- 需要托管的配置文件 -->
-   <bean id="configproperties_disconf"
+   <!-- <bean id="configproperties_disconf"
       class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
       <property name="locations">
          <list>
 
-              <value>application.properties</value>
+              <value>redis_conf.properties</value>
          </list>
       </property> 
    </bean>
@@ -41,5 +41,5 @@
                 <ref bean="configproperties_disconf"/>
             </list>
         </property>
-    </bean>
+    </bean> -->
 </beans>
