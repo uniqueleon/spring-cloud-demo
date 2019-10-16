@@ -12,7 +12,7 @@
 	<groupId>org.aztec</groupId>
 	<artifactId>spring-cloud-client-2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-cloud-demo</name>
+	<name>spring-cloud-demo-2</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
 
@@ -47,7 +47,7 @@
 
 		<dependency>
 			<groupId>org.aztec</groupId>
-			<artifactId>spring-cloud-client-1</artifactId>
+			<artifactId>spring-cloud-client1</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -83,6 +83,11 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
+		</dependency>
+		<dependency>
+    		<groupId>com.baidu.disconf</groupId>
+    		<artifactId>disconf-client</artifactId>
+    		<version>2.6.36</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

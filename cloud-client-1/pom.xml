@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.aztec</groupId>
-	<artifactId>spring-cloud-client-1</artifactId>
+	<artifactId>spring-cloud-client1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-cloud-demo</name>
 	<description>Demo project for Spring Boot</description>
