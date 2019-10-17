@@ -37,5 +37,11 @@ public class RedisConfig {
 	public void setPorts(String ports) {
 		this.ports = ports;
 	}
+
+	@Override
+	public String toString() {
+		return "RedisConfig [hosts=" + hosts + ", sentinelHosts=" + sentinelHosts + ", ports=" + ports + "]";
+	}
+	
 	
 }
