@@ -105,7 +105,8 @@ public class SpringDataSourceConfiguration {
 	 
 	 @Bean(name = "entityManager")
 	 public EntityManager getEntityManager() throws SQLException {
-		 EntityManager em = entityManagerFactory().getNativeEntityManagerFactory().createEntityManager();
+		 EntityManager em = 
+				 entityManagerFactory().getNativeEntityManagerFactory().createEntityManager();
 		 return em;
 	 }
 
