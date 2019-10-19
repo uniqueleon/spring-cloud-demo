@@ -35,9 +35,9 @@ import io.shardingsphere.core.api.config.strategy.InlineShardingStrategyConfigur
 @EnableJpaRepositories(
 		basePackages = {"org.aztec.spring.client.demo2.dao"},
 		
-entityManagerFactoryRef = "entityManager",
+entityManagerFactoryRef = "entityManagerFactory",
 transactionManagerRef =  "transactionManager")
-public class SpringDataSourceConfiguration {
+public class JPADataSourceConfiguration {
 
 	@Autowired
 	private DataSourceConfig dsConfig;
@@ -103,12 +103,6 @@ public class SpringDataSourceConfiguration {
 	    return factory;
 	  }
 	 
-	 @Bean(name = "entityManager")
-	 public EntityManager getEntityManager() throws SQLException {
-		 EntityManager em = 
-				 entityManagerFactory().getNativeEntityManagerFactory().createEntityManager();
-		 return em;
-	 }
 
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {

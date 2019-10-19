@@ -1,6 +1,6 @@
 package org.aztec.spring.client.demo2;
 
-import org.aztec.spring.client.demo2.conf.SpringDataSourceConfiguration;
+import org.aztec.spring.client.demo2.conf.JPADataSourceConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
