@@ -21,7 +21,6 @@ public class TestWebController {
 	  
 	  @RequestMapping("/person")
 	  public Person getPerson(@RequestParam("personID")Long persionID) {
-		  System.out.println("what the suck!");
-		  return new Person(persionID,"suck");
+		  return new Person(persionID,"");
 	  }
 }

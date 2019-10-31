@@ -1,0 +1,15 @@
+server:
+    port: 8896
+    
+spring:
+  application:
+    name: apptest
+  profiles:
+    active: dev
+
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8890/eureka/
+      

@@ -1,7 +1,7 @@
 package org.aztec.spring.client.demo2.feign.fallback;
 
+import org.aztec.spring.client.demo2.entity.People;
 import org.aztec.spring.client.demo2.feign.WebTestService;
-import org.aztec.spring.demo.config.client.feig.Person;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,8 +12,8 @@ public class WebTestFallBack implements WebTestService{
 		return "SUCK!REMOTE IS DOWN";
 	}
 
-	public Person findByID(Long id) {
-		return new Person(9999l,"ERROR");
+	public People findByID(Long id) {
+		return new People(9999l,"ERROR");
 	}
 
 }

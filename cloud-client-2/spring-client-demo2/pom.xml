@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.aztec</groupId>
-	<artifactId>spring-cloud-client-2</artifactId>
+	<artifactId>spring-cloud-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-cloud-demo-2</name>
+	<name>spring-cloud-demo</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
 
@@ -45,11 +45,6 @@
 			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.aztec</groupId>
-			<artifactId>spring-cloud-client1</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
