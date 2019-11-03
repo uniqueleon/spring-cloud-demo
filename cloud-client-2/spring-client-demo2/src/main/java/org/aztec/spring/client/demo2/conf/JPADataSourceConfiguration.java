@@ -32,11 +32,11 @@ import io.shardingsphere.core.api.config.TableRuleConfiguration;
 import io.shardingsphere.core.api.config.strategy.InlineShardingStrategyConfiguration;
 
 @Configuration
-@EnableJpaRepositories(
+/*@EnableJpaRepositories(
 		basePackages = {"org.aztec.spring.client.demo2.dao"},
 		
 entityManagerFactoryRef = "entityManagerFactory",
-transactionManagerRef =  "transactionManager")
+transactionManagerRef =  "transactionManager")*/
 public class JPADataSourceConfiguration {
 
 	@Autowired
