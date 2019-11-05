@@ -19,7 +19,8 @@ public class TableRules {
 	private String databaseRules;
 	
 	private String tableRules;
-
+	
+	private String actualDataNodes;
 
 	@DisconfFileItem(name = "tables",associateField = "tables")
 	public String getTables() {
@@ -59,5 +60,16 @@ public class TableRules {
 	public void setPrimaryKeys(String primaryKeys) {
 		this.primaryKeys = primaryKeys;
 	}
+
+	@DisconfFileItem(name = "table.actualNodes",associateField = "actualDataNodes")
+	public String getActualDataNodes() {
+		return actualDataNodes;
+	}
+
+	public void setActualDataNodes(String actualDataNodes) {
+		this.actualDataNodes = actualDataNodes;
+	}
+	
+	
 	
 }

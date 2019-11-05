@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	@Cacheable(value = "appUser",key="'findbyname_' + #root.args[0]")
+	//@Cacheable(value = "appUser",key="'findbyname_' + #root.args[0]")
 	public List<User> findByName(@Param("name")String name);
 	
 }

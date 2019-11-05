@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-public interface UserMapper {
+public interface UserMapper{
 
 	@Select(value = { "select * from app_user" })
 	public List<User> findAll();

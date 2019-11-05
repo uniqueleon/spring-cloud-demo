@@ -8,20 +8,21 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 
 @org.springframework.context.annotation.Configuration
 @MapperScan(sqlSessionFactoryRef="sessionFactory"
+,sqlSessionTemplateRef="sqlTempl"
 ,basePackages="org.aztec.spring.client.demo2.mapper")
 public class IbatisSessionFactory {
 	
-	@Autowired
-	DataSource dataSource;
 
-	@Bean
-	public SqlSessionFactory sessionFactory() {
+	@Bean(name="sessionFactory")
+	public SqlSessionFactory sessionFactory(@Qualifier("dataSource") DataSource dataSource) {
 		
 		TransactionFactory transactionFactory = new JdbcTransactionFactory();
 		Environment environment = new Environment("development", transactionFactory, dataSource);
@@ -33,5 +34,9 @@ public class IbatisSessionFactory {
 		return sqlSessionFactory;
 	}
 	
-	
+	 @Bean(name = "sqlTempl")
+	    @Primary
+	    public SqlSessionTemplate sqlSessionTemplate(@Qualifier("sessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+	        return new SqlSessionTemplate(sqlSessionFactory);
+	    }
 }

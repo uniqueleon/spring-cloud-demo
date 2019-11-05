@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -17,8 +16,8 @@ import org.aztec.spring.client.demo2.conf.sharding_jdbc.TableRules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.repository.config.BootstrapMode;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -32,11 +31,11 @@ import io.shardingsphere.core.api.config.TableRuleConfiguration;
 import io.shardingsphere.core.api.config.strategy.InlineShardingStrategyConfiguration;
 
 @Configuration
-/*@EnableJpaRepositories(
+@EnableJpaRepositories(
 		basePackages = {"org.aztec.spring.client.demo2.dao"},
 		
 entityManagerFactoryRef = "entityManagerFactory",
-transactionManagerRef =  "transactionManager")*/
+transactionManagerRef =  "transactionManager")
 public class JPADataSourceConfiguration {
 
 	@Autowired
@@ -73,13 +72,16 @@ public class JPADataSourceConfiguration {
 					new InlineShardingStrategyConfiguration(rule.getPrimaryKey(), rule.getDbRule()));
 			tableRuleConfig.setTableShardingStrategyConfig(
 					new InlineShardingStrategyConfiguration(rule.getPrimaryKey(), rule.getTableRule()));
+			tableRuleConfig.setLogicIndex("id");
+			tableRuleConfig.setActualDataNodes(rule.getActualDataNodes());
 			shardingRuleConfig.getTableRuleConfigs().add(tableRuleConfig);
 			shardingRuleConfig.getBindingTableGroups().add(rule.getName());
 		}
 		return shardingRuleConfig;
 	}
 
-	@Bean
+	@Bean(name="dataSource")
+	@Primary
 	public DataSource getShardingJdbcDataSource() throws SQLException {
 
 		System.out.println("init datasource:" + dsConfig.getConnectionUrls());
@@ -91,7 +93,7 @@ public class JPADataSourceConfiguration {
 		return dataSource;
 	}
 	
-	 //@Bean
+	 @Bean
 	  public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws SQLException {
 
 	    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -105,7 +107,7 @@ public class JPADataSourceConfiguration {
 	  }
 	 
 
-	//@Bean
+	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 
 		JpaTransactionManager txManager = new JpaTransactionManager();
@@ -120,9 +122,10 @@ public class JPADataSourceConfiguration {
 
 		String[] dbRules = rules.getDatabaseRules().split(Constants.DEFAULT_SEPERATOR);
 		String[] pks = rules.getPrimaryKeys().split(Constants.DEFAULT_SEPERATOR);
+		String[] actualDataNodes = rules.getActualDataNodes().split(Constants.DEFAULT_SEPERATOR);
 		List<TableRuleInfo> ds = Lists.newArrayList();
 		for(int i = 0;i < names.length;i++) {
-			ds.add(new TableRuleInfo(names[i], dbRules[i],tRules[i], pks[i]));
+			ds.add(new TableRuleInfo(names[i], dbRules[i],tRules[i], pks[i],actualDataNodes[i]));
 		}
 		return ds;
 	}
@@ -132,6 +135,15 @@ public class JPADataSourceConfiguration {
 		private String dbRule;
 		private String tableRule;
 		private String primaryKey;
+		private String actualDataNodes;
+		
+		
+		public String getActualDataNodes() {
+			return actualDataNodes;
+		}
+		public void setActualDataNodes(String actualDataNodes) {
+			this.actualDataNodes = actualDataNodes;
+		}
 		public String getName() {
 			return name;
 		}
@@ -156,12 +168,14 @@ public class JPADataSourceConfiguration {
 		public void setPrimaryKey(String primaryKey) {
 			this.primaryKey = primaryKey;
 		}
-		public TableRuleInfo(String name, String dbRule, String tableRule, String primaryKey) {
+		public TableRuleInfo(String name, String dbRule, String tableRule, String primaryKey
+				,String actualDataNodes) {
 			super();
 			this.name = name;
 			this.dbRule = dbRule;
 			this.tableRule = tableRule;
 			this.primaryKey = primaryKey;
+			this.actualDataNodes = actualDataNodes;
 		}
 		
 	}
