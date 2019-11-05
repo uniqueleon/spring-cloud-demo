@@ -10,15 +10,17 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 @org.springframework.context.annotation.Configuration
 @MapperScan(sqlSessionFactoryRef="sessionFactory"
-,basePackages="org.aztec.spring.client.demo2")
+,basePackages="org.aztec.spring.client.demo2.mapper")
 public class IbatisSessionFactory {
 	
 	@Autowired
 	DataSource dataSource;
 
+	@Bean
 	public SqlSessionFactory sessionFactory() {
 		
 		TransactionFactory transactionFactory = new JdbcTransactionFactory();

@@ -74,6 +74,7 @@ public class JPADataSourceConfiguration {
 			tableRuleConfig.setTableShardingStrategyConfig(
 					new InlineShardingStrategyConfiguration(rule.getPrimaryKey(), rule.getTableRule()));
 			shardingRuleConfig.getTableRuleConfigs().add(tableRuleConfig);
+			shardingRuleConfig.getBindingTableGroups().add(rule.getName());
 		}
 		return shardingRuleConfig;
 	}
@@ -90,7 +91,7 @@ public class JPADataSourceConfiguration {
 		return dataSource;
 	}
 	
-	 @Bean
+	 //@Bean
 	  public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws SQLException {
 
 	    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -104,7 +105,7 @@ public class JPADataSourceConfiguration {
 	  }
 	 
 
-	@Bean
+	//@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 
 		JpaTransactionManager txManager = new JpaTransactionManager();
